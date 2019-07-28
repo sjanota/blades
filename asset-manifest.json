@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/blades/static/css/main.ebecba1b.chunk.css",
+    "main.js": "/blades/static/js/main.5f7bf5f1.chunk.js",
+    "main.js.map": "/blades/static/js/main.5f7bf5f1.chunk.js.map",
+    "runtime~main.js": "/blades/static/js/runtime~main.69a95b48.js",
+    "runtime~main.js.map": "/blades/static/js/runtime~main.69a95b48.js.map",
+    "static/js/2.7acbe17c.chunk.js": "/blades/static/js/2.7acbe17c.chunk.js",
+    "static/js/2.7acbe17c.chunk.js.map": "/blades/static/js/2.7acbe17c.chunk.js.map",
+    "index.html": "/blades/index.html",
+    "precache-manifest.061db18c0cf665775218d50c7d6e8255.js": "/blades/precache-manifest.061db18c0cf665775218d50c7d6e8255.js",
+    "service-worker.js": "/blades/service-worker.js",
+    "static/css/main.ebecba1b.chunk.css.map": "/blades/static/css/main.ebecba1b.chunk.css.map",
+    "static/media/doskvol-map.jpg": "/blades/static/media/doskvol-map.f5c67ae5.jpg"
+  }
+}
