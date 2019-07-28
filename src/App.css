@@ -7,3 +7,13 @@ body {
   display: flex;
   justify-content: center;
 }
+
+.ReactModal__Content {
+  position: relative;
+  top: 5%;
+  left: 20%;
+}
+
+.ReactModal__Overlay {
+  z-index: 1000;
+}
