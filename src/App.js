@@ -69,6 +69,8 @@ const map = {
     ]
 };
 
+const width = 1000;
+
 class App extends React.Component {
 
     render() {
@@ -78,7 +80,9 @@ class App extends React.Component {
             <div className="App">
                 <span>Dupa</span>
                 <div className={"container"}>
-                    <ImageMapper src={doskvolMap} map={map} width={2192} height={1648}
+                    <ImageMapper src={doskvolMap} map={map}
+                                 imgWidth={2192} imgHeight={1648}
+                                 width={width} height={1648*width/2192}
                                  onLoad={this.load}
                                  onClick={this.clicked}
                                  onMouseEnter={this.enterArea}
