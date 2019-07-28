@@ -74,11 +74,8 @@ const width = 1000;
 class App extends React.Component {
 
     render() {
-        console.log("blabla");
-        console.log(map);
         return (
             <div className="App">
-                <span>Dupa</span>
                 <div className={"container"}>
                     <ImageMapper src={doskvolMap} map={map}
                                  imgWidth={2192} imgHeight={1648}
