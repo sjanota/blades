@@ -1,10 +1,8 @@
 import React from "react";
-import ImageMapper from "react-image-mapper";
-import doskvolMap from "./doskvol-map.jpg";
 import map from "./map";
-
-const imgWidth = 2192;
-const imgHeight = 1648;
+import './CityMap.css';
+import DistrictDetailsModal from "../DistrictDetailsModal/DistrictDetailsModal";
+import CityImageMapper from "../CityImageMapper/CityImageMapper";
 
 export default class CityMap extends React.Component {
 
@@ -15,23 +13,18 @@ export default class CityMap extends React.Component {
             height: null,
             ref: React.createRef(),
             shouldUpdate: true,
-            updateDelay: null
+            updateDelay: null,
+            selectedArea: null
         };
 
         this.updateWidth = this.updateWidth.bind(this);
-        this.updateWidthDelayed = this.updateWidthDelayed.bind(this);
+        this.updateWidthThrottle = this.updateWidthThrottle.bind(this);
     }
 
     updateWidth() {
-        const currentWidth = this.state.ref.current.clientWidth;
-        const currentHeight = this.state.ref.current.clientHeight;
-        if (currentWidth !== this.state.width || currentHeight !== this.state.height) {
-            let width = currentWidth;
-            let height = imgHeight * width / imgWidth;
-            if (currentWidth/imgWidth > currentHeight/imgHeight) {
-                height = currentHeight;
-                width = imgWidth * height / imgHeight;
-            }
+        const width = this.state.ref.current.clientWidth;
+        const height = this.state.ref.current.clientHeight;
+        if (width !== this.state.width || height !== this.state.height) {
             this.setState({width, height});
         }
     }
@@ -42,11 +35,11 @@ export default class CityMap extends React.Component {
         }
     }
 
-    updateWidthDelayed() {
+    updateWidthThrottle() {
         this.clearDelay();
         const updateDelay = setTimeout(function () {
             this.setState({shouldUpdate: true})
-        }.bind(this), 200);
+        }.bind(this), 300);
         this.setState({updateDelay, shouldUpdate: false});
         this.updateWidth();
     }
@@ -57,7 +50,7 @@ export default class CityMap extends React.Component {
 
     componentDidMount() {
         this.updateWidth();
-        window.addEventListener('resize', this.updateWidthDelayed);
+        window.addEventListener('resize', this.updateWidthThrottle);
     }
 
     componentWillUnmount() {
@@ -65,17 +58,29 @@ export default class CityMap extends React.Component {
         this.clearDelay();
     }
 
+    selectArea(area) {
+        this.setState({selectedArea: area.name});
+        console.log("clicked", area)
+    }
+
+    deselectArea() {
+        this.setState({selectedArea: null})
+    }
+
     render() {
-        const {selectArea} = this.props;
-        const {width, height, ref} = this.state;
+        const {width, height, ref, selectedArea} = this.state;
 
         return (
             <div className={"CityMap"} ref={ref}>
-                <ImageMapper
-                    src={doskvolMap} map={map}
-                    imgWidth={imgWidth} imgHeight={imgHeight}
-                    width={width} height={height}
-                    onClick={selectArea}
+                <DistrictDetailsModal
+                    selectedArea={selectedArea}
+                    deselectArea={this.deselectArea.bind(this)}
+                />
+                <CityImageMapper
+                    width={width}
+                    height={height}
+                    selectArea={this.selectArea.bind(this)}
+                    map={map}
                 />
             </div>
         )

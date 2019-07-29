@@ -1,3 +1,7 @@
+import { configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import 'jest-enzyme';
+
 window.HTMLCanvasElement.prototype.getContext = function () {
     return {
         fillRect: function() {},
@@ -36,3 +40,5 @@ window.HTMLCanvasElement.prototype.getContext = function () {
 window.HTMLCanvasElement.prototype.toDataURL = function () {
     return "";
 };
+
+configure({ adapter: new Adapter() });
