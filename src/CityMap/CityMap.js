@@ -2,6 +2,7 @@ import React from "react";
 import ImageMapper from "react-image-mapper";
 import doskvolMap from "./doskvol-map.jpg";
 import map from "./map";
+import './CityMap.css';
 
 export default class Wrapper extends React.Component {
 
@@ -37,7 +38,7 @@ export default class Wrapper extends React.Component {
         const {width, ref} = this.state;
 
         return (
-            <div className={"App-wrapper"} ref={ref}>
+            <div className={"CityMap"} ref={ref}>
                 <ImageMapper
                     src={doskvolMap} map={map}
                     imgWidth={2192} imgHeight={1648}

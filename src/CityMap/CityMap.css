@@ -1,0 +1,9 @@
+.CityMap {
+    width: 100%;
+    height: 100%;
+}
+
+.CityMap img {
+    width: 100%;
+    height: auto;
+}
