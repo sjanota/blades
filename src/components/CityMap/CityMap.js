@@ -14,10 +14,13 @@ export default class Wrapper extends React.Component {
         this.state = {
             width: null,
             height: null,
-            ref: React.createRef()
+            ref: React.createRef(),
+            shouldUpdate: true,
+            updateDelay: null
         };
 
         this.updateWidth = this.updateWidth.bind(this);
+        this.updateWidthDelayed = this.updateWidthDelayed.bind(this);
     }
 
     updateWidth() {
@@ -34,14 +37,33 @@ export default class Wrapper extends React.Component {
         }
     }
 
+    clearDelay() {
+        if (this.state.updateDelay) {
+            clearTimeout(this.state.updateDelay)
+        }
+    }
+
+    updateWidthDelayed() {
+        this.clearDelay();
+        const updateDelay = setTimeout(function () {
+            this.setState({shouldUpdate: true})
+        }.bind(this), 200);
+        this.setState({updateDelay, shouldUpdate: false});
+        this.updateWidth();
+    }
+
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        return nextState.shouldUpdate
+    }
+
     componentDidMount() {
         this.updateWidth();
-
-        window.addEventListener('resize', this.updateWidth);
+        window.addEventListener('resize', this.updateWidthDelayed);
     }
 
     componentWillUnmount() {
         window.removeEventListener('resize', this.updateWidth);
+        this.clearDelay();
     }
 
     render() {
