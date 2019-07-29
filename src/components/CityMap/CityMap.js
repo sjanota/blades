@@ -2,12 +2,11 @@ import React from "react";
 import ImageMapper from "react-image-mapper";
 import doskvolMap from "./doskvol-map.jpg";
 import map from "./map";
-import './CityMap.css';
 
 const imgWidth = 2192;
 const imgHeight = 1648;
 
-export default class Wrapper extends React.Component {
+export default class CityMap extends React.Component {
 
     constructor(props) {
         super(props);
