@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import ReactModal from 'react-modal';
 import CityMap from "./CityMap/CityMap";
+import DistrictDetailsModal from "./DistrictDetailsModal/DistrictDetailsModal";
 
 class App extends React.Component {
     constructor(props) {
@@ -11,31 +11,14 @@ class App extends React.Component {
         }
     }
 
-    componentDidMount() {
-
-    }
-
-
     render() {
         const {selectedArea} = this.state;
-        console.log("Selected area", this.state.selectedArea);
         return (
             <div className="App">
-                <ReactModal
-                    isOpen={selectedArea != null}
-                    onRequestClose={this.deselectArea.bind(this)}
-                    style={{
-                        content: {
-                            top: '5%',
-                            left: '20%',
-                            right: '20%',
-                            bottom: 'auto',
-                        }
-                    }}
-                >
-                    <h3>{selectedArea}
-                    </h3>
-                </ReactModal>
+                <DistrictDetailsModal
+                    selectedArea={selectedArea}
+                    deselectArea={this.deselectArea.bind(this)}
+                />
                 <CityMap
                     selectArea={this.selectArea.bind(this)}
                 />
