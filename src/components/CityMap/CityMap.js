@@ -4,12 +4,16 @@ import doskvolMap from "./doskvol-map.jpg";
 import map from "./map";
 import './CityMap.css';
 
+const imgWidth = 2192;
+const imgHeight = 1648;
+
 export default class Wrapper extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
             width: null,
+            height: null,
             ref: React.createRef()
         };
 
@@ -17,9 +21,16 @@ export default class Wrapper extends React.Component {
     }
 
     updateWidth() {
-        const width = this.state.ref.current.clientWidth;
-        if (width !== this.state.width) {
-            this.setState({width});
+        const currentWidth = this.state.ref.current.clientWidth;
+        const currentHeight = this.state.ref.current.clientHeight;
+        if (currentWidth !== this.state.width || currentHeight !== this.state.height) {
+            let width = currentWidth;
+            let height = imgHeight * width / imgWidth;
+            if (currentWidth/imgWidth > currentHeight/imgHeight) {
+                height = currentHeight;
+                width = imgWidth * height / imgHeight;
+            }
+            this.setState({width, height});
         }
     }
 
@@ -35,14 +46,14 @@ export default class Wrapper extends React.Component {
 
     render() {
         const {selectArea} = this.props;
-        const {width, ref} = this.state;
+        const {width, height, ref} = this.state;
 
         return (
             <div className={"CityMap"} ref={ref}>
                 <ImageMapper
                     src={doskvolMap} map={map}
-                    imgWidth={2192} imgHeight={1648}
-                    width={width} height={1648 * width / 2192}
+                    imgWidth={imgWidth} imgHeight={imgHeight}
+                    width={width} height={height}
                     onClick={selectArea}
                 />
             </div>
