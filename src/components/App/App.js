@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import CityMap from "./CityMap/CityMap";
-import DistrictDetailsModal from "./DistrictDetailsModal/DistrictDetailsModal";
+import CityMap from "../CityMap/CityMap";
+import DistrictDetailsModal from "../DistrictDetailsModal/DistrictDetailsModal";
 
 class App extends React.Component {
     constructor(props) {
