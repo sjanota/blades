@@ -1,10 +1,7 @@
 import React from 'react';
 import './App.css';
-import ImageMapper from 'react-image-mapper';
-import doskvolMap from './doskvol-map.jpg';
-import map from './const/map';
 import ReactModal from 'react-modal';
-import CityMap from "./CityMap";
+import CityMap from "./CityMap/CityMap";
 
 class App extends React.Component {
     constructor(props) {
@@ -46,7 +43,7 @@ class App extends React.Component {
         );
     }
 
-    selectArea(area, _, event) {
+    selectArea(area) {
         this.setState({selectedArea: area.name});
         console.log("clicked", area)
     }

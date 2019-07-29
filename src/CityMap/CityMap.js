@@ -1,7 +1,7 @@
 import React from "react";
 import ImageMapper from "react-image-mapper";
 import doskvolMap from "./doskvol-map.jpg";
-import map from "./const/map";
+import map from "./map";
 
 export default class Wrapper extends React.Component {
 
