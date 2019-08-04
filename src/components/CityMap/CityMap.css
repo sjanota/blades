@@ -1,6 +1,26 @@
 .CityMap {
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
+
+.CityMap_Image {
     display: flex;
     justify-content: center;
     height: 100%;
     width: 100%;
+}
+
+.DistrictListEntry.active {
+    color: red;
+}
+
+.DistrictListEntry {
+    list-style: none;
+}
+
+.DistrictList {
+    max-width: 200px;
+    min-width: 100px;
+    padding: 0;
 }
