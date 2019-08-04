@@ -87,8 +87,8 @@ export default class CityMap extends React.Component {
                 <DistrictsList
                     districts={map.areas}
                     selectedDistrict={selectedDistrict}
-                    selectDistrict={this.selectDistrict.bind(this)}
-                    deselectDistrict={this.deselectDistrict.bind(this)}
+                    setHighlightedDistrict={this.setHighlightDistrict.bind(this)}
+                    cleanHighlightedDistrict={this.cleanHighlightedDistrict.bind(this)}
                 />
                 <Route path={`${match.url}/:district`} component={RoutedDistrictDetailsModal}/>
                 <div className={"CityMap_Image"} ref={ref}>
@@ -97,17 +97,19 @@ export default class CityMap extends React.Component {
                         height={height}
                         selectArea={this.selectArea.bind(this)}
                         map={newMap}
+                        setHighlightedDistrict={this.setHighlightDistrict.bind(this)}
+                        cleanHighlightedDistrict={this.cleanHighlightedDistrict.bind(this)}
                     />
                 </div>
             </div>
         )
     }
 
-    selectDistrict(selectedDistrict) {
+    setHighlightDistrict(selectedDistrict) {
         this.setState({selectedDistrict})
     }
 
-    deselectDistrict() {
+    cleanHighlightedDistrict() {
         this.setState({selectedDistrict: null});
     }
 }
@@ -119,10 +121,10 @@ const RoutedDistrictDetailsModal = ({match, history}) => {
     />
 };
 
-const DistrictsList = ({districts, selectedDistrict, selectDistrict, deselectDistrict}) => {
+const DistrictsList = ({districts, selectedDistrict, setHighlightedDistrict, cleanHighlightedDistrict}) => {
 
     const onMouseEnter = (districtName) => () => {
-        selectDistrict(districtName)
+        setHighlightedDistrict(districtName)
     };
 
     return <ul className={'DistrictList'}>
@@ -134,7 +136,7 @@ const DistrictsList = ({districts, selectedDistrict, selectDistrict, deselectDis
                 key={district.name}
                 className={classes}
                 onMouseEnter={onMouseEnter(district.name)}
-                onMouseLeave={deselectDistrict}
+                onMouseLeave={cleanHighlightedDistrict}
             >{district.name}</li>
         })}
     </ul>

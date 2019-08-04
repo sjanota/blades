@@ -6,7 +6,7 @@ import isEqual from "react-fast-compare";
 export const imgWidth = 2192;
 export const imgHeight = 1648;
 
-const CityImageMapper = ({width, height, selectArea, map}) => {
+const CityImageMapper = ({width, height, selectArea, map, setHighlightedDistrict, cleanHighlightedDistrict}) => {
     let scaledWidth = width;
     let scaledHeight = Math.floor(imgHeight * width / imgWidth);
     if (width/imgWidth > height/imgHeight) {
@@ -19,6 +19,8 @@ const CityImageMapper = ({width, height, selectArea, map}) => {
         imgWidth={imgWidth} imgHeight={imgHeight}
         width={scaledWidth} height={scaledHeight}
         onClick={selectArea}
+        onMouseEnter={area => setHighlightedDistrict(area.name)}
+        onMaouseLeave={cleanHighlightedDistrict}
     />
 };
 
