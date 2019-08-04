@@ -22,6 +22,10 @@ export default class CityMap extends React.Component {
     }
 
     updateWidth() {
+        if (!this.state.ref.current) {
+            return
+        }
+
         const width = this.state.ref.current.clientWidth;
         const height = this.state.ref.current.clientHeight;
         if (width !== this.state.width || height !== this.state.height) {
@@ -53,9 +57,13 @@ export default class CityMap extends React.Component {
         window.addEventListener('resize', this.updateWidthThrottle);
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+
+    }
+
     componentWillUnmount() {
-        window.removeEventListener('resize', this.updateWidth);
         this.clearDelay();
+        window.removeEventListener('resize', this.updateWidth);
     }
 
     selectArea(area) {

@@ -1,12 +1,32 @@
 import React from 'react';
 import './App.css';
 import CityMap from "../CityMap/CityMap";
+import {NavTab} from "react-router-tabs";
+import {Redirect, Route, Switch} from "react-router";
+import "react-router-tabs/styles/react-router-tabs.css";
+
+
+const tabs = [
+    {
+        index: 0,
+        title: "City Map",
+        route: "city-map"
+    },
+];
 
 class App extends React.Component {
     render() {
         return (
             <div className="App">
-                <CityMap/>
+                <NavTab to={"/city-map"}>City Map</NavTab>
+                <NavTab to={"/bohaters"}>Bohaters</NavTab>
+                <div className={"App_Pages"}>
+                    <Switch>
+                        <Route path={"/city-map"} component={CityMap}/>
+                        <Route path={"/bohaters"} render={() => <h3>Bohaters</h3>}/>
+                        <Redirect to={"/city-map"} from={"/"}/>
+                    </Switch>
+                </div>
             </div>
         );
     }

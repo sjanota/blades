@@ -2,10 +2,8 @@ html, body, #root, .App{
   height: 100%;
 }
 
-.App {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.App_Pages {
+  height: 100%;
 }
 
 .ReactModal__Content {
