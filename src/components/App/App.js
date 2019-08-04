@@ -6,14 +6,6 @@ import {Redirect, Route, Switch} from "react-router";
 import "react-router-tabs/styles/react-router-tabs.css";
 
 
-const tabs = [
-    {
-        index: 0,
-        title: "City Map",
-        route: "city-map"
-    },
-];
-
 class App extends React.Component {
     render() {
         return (

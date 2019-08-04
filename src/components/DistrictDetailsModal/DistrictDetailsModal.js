@@ -2,10 +2,10 @@ import ReactModal from "react-modal";
 import React from "react";
 import DistrictDetails from "../DistrictDetails/DistrictDetails";
 
-const DistrictDetailsModal = ({selectedArea, deselectArea}) => {
+const DistrictDetailsModal = ({district, onRequestClose}) => {
     return <ReactModal
-        isOpen={selectedArea != null}
-        onRequestClose={deselectArea}
+        isOpen={district != null}
+        onRequestClose={onRequestClose}
         style={{
             content: {
                 top: '5%',
@@ -15,7 +15,7 @@ const DistrictDetailsModal = ({selectedArea, deselectArea}) => {
             }
         }}
     >
-        <DistrictDetails name={selectedArea}/>
+        <DistrictDetails name={district}/>
     </ReactModal>
 };
 

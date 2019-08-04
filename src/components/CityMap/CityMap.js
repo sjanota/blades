@@ -3,6 +3,7 @@ import map from "./map";
 import './CityMap.css';
 import DistrictDetailsModal from "../DistrictDetailsModal/DistrictDetailsModal";
 import CityImageMapper from "../CityImageMapper/CityImageMapper";
+import {Route} from "react-router";
 
 export default class CityMap extends React.Component {
 
@@ -13,8 +14,7 @@ export default class CityMap extends React.Component {
             height: null,
             ref: React.createRef(),
             shouldUpdate: true,
-            updateDelay: null,
-            selectedArea: null
+            updateDelay: null
         };
 
         this.updateWidth = this.updateWidth.bind(this);
@@ -57,33 +57,23 @@ export default class CityMap extends React.Component {
         window.addEventListener('resize', this.updateWidthThrottle);
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-
-    }
-
     componentWillUnmount() {
         this.clearDelay();
         window.removeEventListener('resize', this.updateWidth);
     }
 
     selectArea(area) {
-        this.setState({selectedArea: area.name});
-        console.log("clicked", area)
-    }
-
-    deselectArea() {
-        this.setState({selectedArea: null})
+        const {history, match} = this.props;
+        history.push(`${match.url}/${area.name}`);
     }
 
     render() {
-        const {width, height, ref, selectedArea} = this.state;
+        const {match} = this.props;
+        const {width, height, ref} = this.state;
 
         return (
             <div className={"CityMap"} ref={ref}>
-                <DistrictDetailsModal
-                    selectedArea={selectedArea}
-                    deselectArea={this.deselectArea.bind(this)}
-                />
+                <Route path={`${match.url}/:district`} component={RoutedDistrictDetailsModal}/>
                 <CityImageMapper
                     width={width}
                     height={height}
@@ -94,3 +84,10 @@ export default class CityMap extends React.Component {
         )
     }
 }
+
+const RoutedDistrictDetailsModal = ({match, history}) => {
+    return <DistrictDetailsModal
+        district={match.params.district}
+        onRequestClose={history.goBack}
+    />
+};
