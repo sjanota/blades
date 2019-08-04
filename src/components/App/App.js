@@ -10,8 +10,10 @@ class App extends React.Component {
     render() {
         return (
             <div className="App">
+                <div>
                 <NavTab to={"/city-map"}>City Map</NavTab>
                 <NavTab to={"/bohaters"}>Bohaters</NavTab>
+                </div>
                 <div className={"App_Pages"}>
                     <Switch>
                         <Route path={"/city-map"} component={CityMap}/>

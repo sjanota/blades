@@ -1,5 +1,11 @@
 html, body, #root, .App{
+  max-height: 100%;
   height: 100%;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
 }
 
 .App_Pages {
