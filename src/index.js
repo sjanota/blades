@@ -7,7 +7,7 @@ import ReactModal from 'react-modal';
 import {BrowserRouter as Router} from "react-router-dom";
 
 ReactModal.setAppElement('#root');
-ReactDOM.render(<Router basename={"/blades"}><App/></Router>, document.getElementById('root'));
+ReactDOM.render(<Router basename={process.env.REACT_APP_BASENAME}><App/></Router>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
