@@ -5,7 +5,6 @@ import {NavTab} from "react-router-tabs";
 import {Redirect, Route, Switch} from "react-router";
 import "react-router-tabs/styles/react-router-tabs.css";
 
-
 class App extends React.Component {
     render() {
         return (
